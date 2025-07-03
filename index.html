@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Officer Acceptance Letter</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 40px;
+            border: 1px solid #ccc;
+        }
+        .header-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header-logo img {
+            max-width: 120px;
+        }
+        p, .signature {
+            margin: 1em 0;
+        }
+        strong, b {
+            font-weight: bold;
+        }
+        .assignment-box {
+            border: 1px solid #eee;
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .signature-block {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 30px;
+        }
+        .signature-text {
+            flex-grow: 1;
+        }
+        .signature-stamp img {
+            max-width: 140px;
+            opacity: 0.8;
+        }
+        #print-button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .button {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        @media print {
+            body { background-color: #fff; padding: 0; margin: 0; font-size: 12pt; }
+            .container { border: none; box-shadow: none; max-width: 100%; padding: 0; }
+            #print-button-container { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-logo">
+            <img src="https://pyleamun.github.io/interview-guide/pyleaMUNfinallogo_transparent.png" alt="PyleaMUN Logo">
+        </div>
+
+        <p id="date-field"></p>
+
+        <p>
+            <strong>To:</strong> <span id="applicantName"></span><br>
+            <i><span id="applicantSchool"></span></i><br>
+            <i><span id="applicantEmail"></span></i>
+        </p>
+
+        <p><strong>Subject:</strong> Offer of Student Officer Position for PyleaMUN 2025</p>
+
+        <p>Dear <span id="applicantName2"></span>,</p>
+
+        <p>On behalf of the PyleaMUN 2025 Organizing Committee, and following your successful interview, we are thrilled to offer you a position on our Student Officer team. We were exceptionally impressed by your expertise, leadership potential, and passion for Model UN.</p>
+        
+        <p>We are pleased to offer you the following position:</p>
+        
+        <div class="assignment-box">
+            <p><strong>Position: <span id="position" style="font-weight: bold;"></span></strong></p>
+            <p><strong>Committee: <span id="committee" style="font-weight: bold;"></span></strong></p>
+        </div>
+
+        <p>As a Student Officer, you will play a crucial role in the success of our conference by guiding debate and ensuring a high-quality educational experience for all delegates. Further details regarding your responsibilities, training sessions, and report deadlines will be communicated to you shortly.</p>
+        
+        <p>Congratulations, and welcome to the team. We are confident you will be an invaluable asset and look forward to working with you.</p>
+
+        <div class="signature-block">
+            <div class="signature-text">
+                <p>Best regards,</p>
+                <p>The PyleaMUN 2026 Organizing Committee</p>
+            </div>
+            <div class="signature-stamp">
+                <img src="blue.png" alt="PyleaMUN Stamp">
+            </div>
+        </div>
+
+        <div id="print-button-container">
+            <button onclick="window.print()" class="button">Print to PDF</button>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            
+            // Get data from URL
+            const fullName = params.get('fullName') || '[Applicant Name]';
+            const school = params.get('school') || '[Applicant School]';
+            const email = params.get('email') || '[Applicant Email]';
+            const position = params.get('position') || '[Assigned Position]';
+            const committee = params.get('committee') || '[Assigned Committee]';
+
+            // Set today's date
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('date-field').textContent = today.toLocaleDateString('en-GB', options);
+
+            // Populate the letter
+            document.getElementById('applicantName').textContent = fullName;
+            document.getElementById('applicantName2').textContent = fullName;
+            document.getElementById('applicantSchool').textContent = school;
+            document.getElementById('applicantEmail').textContent = email;
+            document.getElementById('position').textContent = position;
+            document.getElementById('committee').textContent = committee;
+        };
+    </script>
+
+</body>
+</html>
